@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: peepsservice
+spec:
+  containers:
+    - name: birdsquawk
+      image: nelsonekpenyong/peepsservice:0.0.1
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: peepsservice-clusterip
+spec:
+  selector:
+    app: peepsservice
+    type: ClusterIp
+  ports:
+   - name: peepsservice
+     protocol: TCP
+     port: 5001
+     targetPort: 5001
+
+  
